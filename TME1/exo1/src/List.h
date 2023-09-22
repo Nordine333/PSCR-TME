@@ -35,9 +35,8 @@ public:
 
 	void push_back (const std::string& val) ;
 
-	void push_front (const std::string& val) {
-		tete = new Chainon(val,tete);
-	}
+	// ERR 5 : on ne doit pas implemter la fonction directmeent dans le fichier header (.h) (redefinition erreur)
+	void push_front (const std::string& val);
 
 	bool empty() ;
 
@@ -49,4 +48,5 @@ std::ostream & operator<< (std::ostream & os, const List & vec) ;
 
 } /* namespace pr */
 
-#endif /* SRC_LIST_H_ */
+//ERR 2 : dans #endif le SRC_LIST_H_ qui suivait etait en commentaire
+#endif SRC_LIST_H_

@@ -1,3 +1,5 @@
+//ERR 3 : oublie de #include "List.h"
+#include "List.h"
 
 namespace pr {
 
@@ -12,7 +14,8 @@ size_t Chainon::length() {
 	return length();
 }
 
-void Chainon::print (std::ostream & os) {
+//ERR 4 : il manquais le const apres les parametres de la fonction
+void Chainon::print (std::ostream & os)const {
 	os << data ;
 	if (next != nullptr) {
 		os << ", ";
@@ -45,7 +48,8 @@ void List::push_front (const std::string& val) {
 	tete = new Chainon(val,tete);
 }
 
-bool empty() {
+//ERR 7 : il faut rajouter List:: avant le nom de la fonction
+bool List::empty() {
 	return tete == nullptr;
 }
 
@@ -57,7 +61,6 @@ size_t List::size() const {
 	}
 }
 
-} // namespace pr
 
 std::ostream & operator<< (std::ostream & os, const pr::List & vec)
 {
@@ -69,3 +72,5 @@ std::ostream & operator<< (std::ostream & os, const pr::List & vec)
 	return os;
 }
 
+// ERR 6 : l'accolade du namespace pr empechait la declaration de la derneire fonction operator<<
+} // namespace pr

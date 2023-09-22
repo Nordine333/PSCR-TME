@@ -3,13 +3,16 @@
 #include <iostream>
 #include <cstring>
 
+
 int main () {
 
 	std::string abc = "abc";
-	char * str = new char [3];
+	//ERR 10 : on augmente la taille du tab de 3 à 4 pour laisser une place au '\0'
+	char * str = new char [4];
 	str[0] = 'a';
 	str[1] = 'b';
 	str[2] = 'c';
+
 	size_t i = 0;
 
 	if (! strcmp (str, abc.c_str())) {
@@ -33,6 +36,9 @@ int main () {
 		delete cp;
 	}
 	// et la chaine elle meme
-	delete str;
+	//ERR 9 : on remplace delete par delete[]
+	delete[] str;
 
+	//ERR 8 : on rajoute le  return 0 a la fin du main
+	return 0;
 }
