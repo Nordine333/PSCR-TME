@@ -6,11 +6,11 @@
 CPP_SRCS += \
 ../src/TME0.cpp 
 
-OBJS += \
-./src/TME0.o 
-
 CPP_DEPS += \
 ./src/TME0.d 
+
+OBJS += \
+./src/TME0.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,4 +21,11 @@ src/%.o: ../src/%.cpp src/subdir.mk
 	@echo 'Finished building: $<'
 	@echo ' '
 
+
+clean: clean-src
+
+clean-src:
+	-$(RM) ./src/TME0.d ./src/TME0.o
+
+.PHONY: clean-src
 
