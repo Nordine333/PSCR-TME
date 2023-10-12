@@ -4,6 +4,7 @@
 #include <chrono>
 #include <vector>
 #include <cstring>
+#include "HashMap.hpp"
 
 int main () {
 	using namespace std;
@@ -12,6 +13,8 @@ int main () {
 	//vector<string> v;
 	//EX 3 :
 	vector<pair<string,int>> v;
+	//EX 4 :
+	HashMap<string,int> Hmap(3);
 
 	ifstream input = ifstream("WarAndPeace.txt");
 
@@ -72,7 +75,13 @@ int main () {
 		uniq=true;
 		*/
 
+		//EX4 :
+
+		Hmap.put(word,1);
+		cout<<"taille : " << Hmap.size() << endl;
+
 	}
+
 
 	/*
 			 * EX3 :
