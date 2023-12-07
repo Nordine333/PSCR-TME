@@ -51,18 +51,22 @@ public:
 		tab[begin] = nullptr;
 		sz--;
 		begin = (begin + 1) % allocsize;
-
+		
+		cv.notify_one();
 
 		return ret;
 	}
 	bool push(T* elt) {
-		std::unique_lock<std::mutex> l(m);
-		while (full() && !isBlocking) {
-			cv.wait(l);
+		{
+			std::unique_lock<std::mutex> l(m);
+			while (full()) {
+				cv.wait(l);
+				return false;
+			}
+			tab[(begin + sz) % allocsize] = elt;
+			sz++;
 		}
-		tab[(begin + sz) % allocsize] = elt;
-		sz++;
-
+		cv.notify_one();
 		return true;
 	}
 	~Queue() {
